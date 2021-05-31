@@ -4,3 +4,8 @@
   background-color: burlywood;
   margin: 30px;
 }
+
+.Graph-chart {
+  height: 100%;
+  width: 100%;
+}

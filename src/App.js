@@ -8,13 +8,18 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      name: ["Trade", "Import", "Export", "Trade Deficit"]
     }
     this.handleData = this.handleData.bind(this);
   }
   handleData(data) {
+    const tradeSeries = { stats: data.tradeSeries, title: "Trade" };
+    const importSeries = { stats: data.importSeries, title: "Import" };
+    const exportSeries = { stats: data.exportSeries, title: "Export" };
+    const tradeDeficitSeries = { stats: data.tradeDeficitSeries, title: "Trade Defecit" };
     this.setState({
-      data: [data.tradeSeries, data.importSeries, data.exportSeries, data.tradeDeficitSeries]
+      data: [tradeSeries, importSeries, exportSeries, tradeDeficitSeries]
     });
   }
 
@@ -33,7 +38,7 @@ export class App extends Component {
         <NavBar />
         <div className="container">
           {this.state.data.map((parameter) => (
-            <Graph data={parameter} key={parameter} />
+            <Graph data={parameter} key={parameter.title} />
           ))}
         </div>
       </div>
