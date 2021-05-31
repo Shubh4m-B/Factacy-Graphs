@@ -5,14 +5,28 @@ import '../Styles/Graph.css'
 const Graph = (props) => {
     const [chartData, setChartData] = useState({})
 
+    const { title, stats } = props.data
+
+    const labels = []
+    const chartDataSet = []
+
+    for (let i = 0; i < 4; i++) {
+        labels.push(stats[0].countryValueList[i].country)
+        chartDataSet.push(stats[0].countryValueList[i].value)
+    }
     const chart = () => {
         setChartData({
-            labels: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'],
+            labels: labels,
             datasets: [
                 {
-                    label: "Level of thickness",
-                    data: [90, 34, 56, 67, 89],
-                    backgroundColor: 'rgba(75,192,255,0.7)',
+                    label: `${title}-2015`,
+                    data: chartDataSet,
+                    backgroundColor: [
+                        'rgba(75,192,255,0.7)',
+                        'rgba(255,100,20,0.7)',
+                        'rgba(20,200,98,0.7)',
+                        'rgba(200,192,67,0.7)'
+                    ],
                     fill: true,
                     borderWidth: 4
                 }
@@ -26,7 +40,7 @@ const Graph = (props) => {
 
     return (
         <div className="Graph">
-            <h1>Graph : {props.data.title}</h1>
+            <h1>{title}</h1>
             <div className="Graph-chart">
                 <Bar data={chartData} options={{
                     responsive: true,
@@ -43,10 +57,13 @@ const Graph = (props) => {
                                     beginAtZero: true
                                 },
                                 gridLines: {
-                                    display: true
+                                    display: false,
+                                    // borderColor: 'rgba(200,200,200,0.7)',
+                                    // color: 'rgba(200,200,200,0.7)',
+                                    // tickColor: 'rgba(200,200,200,0.7)'
                                 }
                             }
-                        ]
+                        ],
                     }
                 }} />
             </div>

@@ -1,11 +1,21 @@
 .Graph {
   min-height: 50vh;
-  width: 90%;
-  background-color: burlywood;
+  width: 70%;
   margin: 30px;
+  color: white;
+  background-color: rgb(27, 27, 27);
+  box-shadow: rgb(78, 78, 78) 0px 3px 10px;
+  padding: 2em;
+  border-radius: 15px;
 }
 
 .Graph-chart {
   height: 100%;
   width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+  .Graph {
+    width: 90%;
+  }
 }
