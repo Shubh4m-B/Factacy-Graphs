@@ -15,21 +15,22 @@ const useStyles = makeStyles((theme) => ({
     },
     selectEmpty: {
         marginTop: theme.spacing(2),
-        background: "white"
+    },
+    select: {
+        outline: "none",
+        border: "none",
     },
     label: {
         color: "white"
     },
-    value: {
-        backgrounColor: "white"
-    }
+
 }));
 
 const Graph = (props) => {
     const classes = useStyles();
     const [dataYear, setDataYear] = useState(2015)
 
-    const { title, stats } = props.data
+    const { title, stats, color } = props.data
 
     const handleChange = (e) => {
         setDataYear(e.target.value)
@@ -39,18 +40,16 @@ const Graph = (props) => {
         <div className="Graph">
             <div className="Graph-header">
                 <h1>{title}</h1>
-                <FormControl variant="outlined" className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label" className={classes.label}>Year</InputLabel>
+                <FormControl variant="filled" className={classes.formControl}>
+                    {/*<InputLabel id="demo-simple-select-outlined-label" className={classes.label}>Year</InputLabel>*/}
                     <Select
                         labelId="simple-select-outlined-label"
                         id="simple-select-outlined"
                         value={dataYear}
                         onChange={handleChange}
                         label="Year"
+                        className={classes.select}
                     >
-                        <MenuItem value="" className={classes.value}>
-                            <em>None</em>
-                        </MenuItem>
                         <MenuItem value={2015}>2015</MenuItem>
                         <MenuItem value={2016}>2016</MenuItem>
                         <MenuItem value={2017}>2017</MenuItem>
@@ -61,7 +60,7 @@ const Graph = (props) => {
                 </FormControl>
             </div>
             <div className="Graph-chart">
-                <Chart stats={stats} title={title} dataYear={dataYear} />
+                <Chart stats={stats} title={title} dataYear={dataYear} color={color} />
             </div>
         </div>
     )

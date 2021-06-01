@@ -19,10 +19,7 @@ const Chart = (props) => {
                     label: `${props.title}-${props.dataYear}`,
                     data: chartDataSet,
                     backgroundColor: [
-                        'rgba(75,192,255,0.7)',
-                        'rgba(255,100,20,0.7)',
-                        'rgba(20,200,98,0.7)',
-                        'rgba(200,192,67,0.7)'
+                        props.color
                     ],
                     fill: true,
                     borderWidth: 4

@@ -14,10 +14,10 @@ export class App extends Component {
     this.handleData = this.handleData.bind(this);
   }
   handleData(data) {
-    const tradeSeries = { stats: data.tradeSeries, title: "Trade" };
-    const importSeries = { stats: data.importSeries, title: "Import" };
-    const exportSeries = { stats: data.exportSeries, title: "Export" };
-    const tradeDeficitSeries = { stats: data.tradeDeficitSeries, title: "Trade Defecit" };
+    const tradeSeries = { stats: data.tradeSeries, title: "Trade", color: 'rgba(75,192,255,0.7)' };
+    const importSeries = { stats: data.importSeries, title: "Import", color: 'rgba(200,192,67,0.7)' };
+    const exportSeries = { stats: data.exportSeries, title: "Export", color: 'rgba(20,200,98,0.7)' };
+    const tradeDeficitSeries = { stats: data.tradeDeficitSeries, title: "Trade Defecit", color: 'rgba(255,100,20,0.7)' };
     this.setState({
       data: [tradeSeries, importSeries, exportSeries, tradeDeficitSeries]
     });
@@ -38,7 +38,7 @@ export class App extends Component {
         <NavBar />
         <div className="container">
           {this.state.data.map((parameter) => (
-            <Graph data={parameter} key={parameter.title} />
+            <Graph data={parameter} key={parameter.title} color={parameter.color} />
           ))}
         </div>
       </div>

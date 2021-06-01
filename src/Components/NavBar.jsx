@@ -5,7 +5,7 @@ export class NavBar extends Component {
     render() {
         return (
             <div className="NavBar">
-                <h2 className="NavBar-heading">Navbar</h2>
+                <h2 className="NavBar-heading">API Data Visualization</h2>
             </div>
         )
     }
