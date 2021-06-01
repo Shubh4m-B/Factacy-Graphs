@@ -1,71 +1,67 @@
-import React, { useEffect, useState } from 'react'
-import { Bar } from 'react-chartjs-2'
+import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+import Chart from './Chart'
 import '../Styles/Graph.css'
 
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+        background: "white"
+    },
+    label: {
+        color: "white"
+    },
+    value: {
+        backgrounColor: "white"
+    }
+}));
+
 const Graph = (props) => {
-    const [chartData, setChartData] = useState({})
+    const classes = useStyles();
+    const [dataYear, setDataYear] = useState(2015)
 
     const { title, stats } = props.data
 
-    const labels = []
-    const chartDataSet = []
-
-    for (let i = 0; i < 4; i++) {
-        labels.push(stats[0].countryValueList[i].country)
-        chartDataSet.push(stats[0].countryValueList[i].value)
+    const handleChange = (e) => {
+        setDataYear(e.target.value)
     }
-    const chart = () => {
-        setChartData({
-            labels: labels,
-            datasets: [
-                {
-                    label: `${title}-2015`,
-                    data: chartDataSet,
-                    backgroundColor: [
-                        'rgba(75,192,255,0.7)',
-                        'rgba(255,100,20,0.7)',
-                        'rgba(20,200,98,0.7)',
-                        'rgba(200,192,67,0.7)'
-                    ],
-                    fill: true,
-                    borderWidth: 4
-                }
-            ]
-        })
-    }
-
-    useEffect(() => {
-        chart()
-    }, [])
 
     return (
         <div className="Graph">
-            <h1>{title}</h1>
+            <div className="Graph-header">
+                <h1>{title}</h1>
+                <FormControl variant="outlined" className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-outlined-label" className={classes.label}>Year</InputLabel>
+                    <Select
+                        labelId="simple-select-outlined-label"
+                        id="simple-select-outlined"
+                        value={dataYear}
+                        onChange={handleChange}
+                        label="Year"
+                    >
+                        <MenuItem value="" className={classes.value}>
+                            <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={2015}>2015</MenuItem>
+                        <MenuItem value={2016}>2016</MenuItem>
+                        <MenuItem value={2017}>2017</MenuItem>
+                        <MenuItem value={2018}>2018</MenuItem>
+                        <MenuItem value={2019}>2019</MenuItem>
+                        <MenuItem value={2020}>2020</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
             <div className="Graph-chart">
-                <Bar data={chartData} options={{
-                    responsive: true,
-                    title: {
-                        text: "Some title",
-                        display: true
-                    },
-                    scales: {
-                        yAxes: [
-                            {
-                                ticks: {
-                                    autoSkip: true,
-                                    maxTicksLimit: 10,
-                                    beginAtZero: true
-                                },
-                                gridLines: {
-                                    display: false,
-                                    // borderColor: 'rgba(200,200,200,0.7)',
-                                    // color: 'rgba(200,200,200,0.7)',
-                                    // tickColor: 'rgba(200,200,200,0.7)'
-                                }
-                            }
-                        ],
-                    }
-                }} />
+                <Chart stats={stats} title={title} dataYear={dataYear} />
             </div>
         </div>
     )

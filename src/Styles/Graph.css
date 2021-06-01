@@ -3,10 +3,17 @@
   width: 70%;
   margin: 30px;
   color: white;
-  background-color: rgb(27, 27, 27);
-  box-shadow: rgb(78, 78, 78) 0px 3px 10px;
+  background-color: rgba(42, 42, 42, 0.918);
+  box-shadow: rgb(113, 113, 113) 0px 3px 10px;
   padding: 2em;
   border-radius: 15px;
+}
+.Graph-header {
+  height: 15vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .Graph-chart {
