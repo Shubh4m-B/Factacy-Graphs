@@ -1,7 +1,7 @@
 {
   "name": "graphs",
   "version": "0.1.0",
-  "homepage": "https://Shubh4m-B.github.io/Graphs",
+  "homepage": "https://Shubh4m-B.github.io/Factacy-Graphs",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
